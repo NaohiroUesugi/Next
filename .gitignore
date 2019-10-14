@@ -1,3 +1,8 @@
 node_modules
 .next
-out 
+out
+hosting*
+dist
+functions
+.firebase
+.next

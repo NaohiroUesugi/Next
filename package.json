@@ -4,10 +4,21 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "dev": "next",
+    "dev": "npm run clean && next",
     "build": "next build",
     "start": "next start",
-    "export": "next export"
+    "export": "next export",
+    "analyze": "cross-env BUNDLE_ANALYZE=both next build",
+    "analyze:server": "cross-env BUNDLE_ANALYZE=server next build",
+    "analyze:browser": "cross-env BUNDLE_ANALYZE=browser next build",
+    "build:functions": "npm run build:functions:lint && cpx \"functions/lib/**/*.*\" dist/functions",
+    "build:functions:lint": "cd functions && npm install && npm run lint && npm run build",
+    "build:public": "cpx \"static/**/*.*\" dist/public/static && cpx \"dist/functions/_next/static/**/*.*\" dist/public/_next/static && cpx \"dist/functions/_next/serverless/pages/**/*.*\" dist/public/",
+    "clean": "rimraf dist && rimraf functions/lib && rimraf .next",
+    "copy:deps": "cpx \"*{package.json,package-lock.json}\" dist/functions && cd dist/functions && npm install",
+    "firebase:build": "npm run clean && npm run build:functions && npm run build && npm run build:public && npm run copy:deps",
+    "firebase:serve": "npm run firebase:build && firebase serve --only hosting",
+    "firebase:deploy": "npm run firebase:build && firebase deploy --only hosting"
   },
   "author": "",
   "license": "ISC",
@@ -23,6 +34,8 @@
     "rxjs": "^6.5.3"
   },
   "devDependencies": {
+    "cpx": "^1.5.0",
+    "firebase-tools": "^7.5.0",
     "typescript": "^3.6.4"
   }
 }

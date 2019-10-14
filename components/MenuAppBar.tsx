@@ -43,7 +43,7 @@ function MenuAppBar() {
         <Toolbar>
           <MenuAppDrawer />
           <Typography variant="h6" className={classes.title}>
-            AJ's Books
+            NextApp
           </Typography>
           {auth && (
             <div>
