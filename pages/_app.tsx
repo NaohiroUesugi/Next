@@ -22,7 +22,7 @@ class MyApp extends App {
     return (
       <Container>
         <Head>
-          <title>AJ' Books</title>
+          <title>Next.js_app</title>
         </Head>
         <ThemeProvider theme={theme}>
           {/* CssBaseline kickstart an elegant, consistent, and simple baseline to build upon. */}
