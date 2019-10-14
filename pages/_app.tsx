@@ -6,6 +6,7 @@ import React from 'react';
 
 import MenuAppBar from '../components/MenuAppBar';
 import theme from '../themes/theme';
+import Grid from '@material-ui/core/Grid';
 
 class MyApp extends App {
   componentDidMount() {
@@ -28,7 +29,9 @@ class MyApp extends App {
           {/* CssBaseline kickstart an elegant, consistent, and simple baseline to build upon. */}
           <CssBaseline />
           <MenuAppBar />
-          <Component {...pageProps} />
+          <Grid container direction="row" justify="center" alignItems="center"> 
+            <Component {...pageProps} />
+          </Grid>
         </ThemeProvider>
       </Container>
     );
